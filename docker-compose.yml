@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      API_KEY: "fake-local-key-123"
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend
+    environment:
+      BACKEND_URL: "http://backend:5000"
+      APP_MESSAGE: "Hello from Docker Compose!"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
